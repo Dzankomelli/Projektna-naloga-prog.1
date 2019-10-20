@@ -2,8 +2,7 @@ import json
 import requests
 import re
 import tools
-
-
+import page_saving
 
 pattern = (
     r'<!--------------------- DESCRIPTION  ------------------->'
@@ -17,6 +16,7 @@ pattern = (
     r'<!--------------------- DATA  ------------------->'
     r'\s+'
     r'<ul>'
+    r'\s+'
     r'<li>(.*)</li>' #data of first registration
     r'\s+'
     r'<li>(.*)</li><li>(.*)</li><li>(.*)</li>' #(1.) number of km, (2.) type of motor. (3.) type of transmission
@@ -24,10 +24,14 @@ pattern = (
 )
 
 cars = []
-count = 0
+count = 1
 
-content = file_content('1.page.html')
-for i in re.finditer(pattern, content):
-    cars.append(pattern.groupdict())
-    count += 1
-print(count)
+for i in range(100, 101):
+    content = tools.file_content(f'captured_data/{i}.page.html')
+    print('----------------------NASLEDNJA STRAN--------------------')
+    for match in re.findall(pattern, content):
+        cars.append(match)
+        print(match, count)
+        count += 1
+
+tools.write_json(cars, 'cars.json')        
