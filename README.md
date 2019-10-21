@@ -5,7 +5,7 @@
 - Leto 1. registracije
 - Znamka
 - Model 
-- vrsta goriva
+- vrsta motorja (gorivo)
 - število prevoženih kilometrov
 - Menjalnik
 
