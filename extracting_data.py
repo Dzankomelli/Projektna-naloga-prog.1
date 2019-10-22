@@ -44,16 +44,3 @@ def writing_data_and_price_json_csv():
     tools.write_json(cars_data, 'cars_data.json') 
     tools.write_csv(cars_data, ['brand', 'model', 'first_registration', 'kilometers', 'engine', 'transmission'], 'cars_data.csv')
 
-# def writing_price_json_csv():
-#     cars_price = []
-#     count = 0
-#     for i in range(len(page_saving.brands)):
-#         print(page_saving.brands[i], count)
-#         for j in range(20):
-#             content = tools.file_content(f'captured_data/{page_saving.brands[i]}/{page_saving.brands[i]}_page_{j+1}.html')
-#             for match in re.finditer(pattern_price, content):
-#                 count += 1
-#                 cars_price.append(match.groupdict())
-#     print(count)
-#     tools.write_json(cars_price, 'cars_price.json') 
-#     tools.write_csv(cars_price, ['price'], 'cars_price.csv')

@@ -21,11 +21,12 @@ def save_html(url, file_name, force_trasnfer=False):
             print('It was saved before.')
             return
         r = requests.get(url)
+        r.encoding = 'UTF-8'
     except requests.exceptions.ConnectionError:
         print('Site does not exists')
     else:
         make_directory(file_name)
-        with open(file_name, 'w', encoding='utf-8') as f:
+        with open(file_name, 'w', encoding='UTF-8') as f:
             f.write(r.text)
             print('Saved.')
 
