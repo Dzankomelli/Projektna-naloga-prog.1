@@ -21,26 +21,26 @@ def save_html(url, file_name, force_trasnfer=False):
             print('It was saved before.')
             return
         r = requests.get(url)
-        r.encoding = 'UTF-8'
+        r.encoding = 'utf8'
     except requests.exceptions.ConnectionError:
         print('Site does not exists')
     else:
         make_directory(file_name)
-        with open(file_name, 'w', encoding='UTF-8') as f:
+        with open(file_name, 'w', encoding='utf8') as f:
             f.write(r.text)
             print('Saved.')
 
 
 def file_content(file_name):
     '''Returns string with content of a file with given name.'''
-    with open(file_name, encoding='utf-8') as f:
+    with open(file_name, encoding='utf8') as f:
         return f.read()
 
 
 def write_csv(dictionaries, field_names, file_name):
     '''From list of dictionaries create CSV file with head.'''
     make_directory(file_name)
-    with open(file_name, 'w', encoding='utf-8') as csv_f:
+    with open(file_name, 'w', encoding='utf8') as csv_f:
         writer = csv.DictWriter(csv_f, fieldnames=field_names)
         writer.writeheader()
         for dictionary in dictionaries:
@@ -50,6 +50,6 @@ def write_csv(dictionaries, field_names, file_name):
 def write_json(object, file_name):
     '''from given object create JSON file.'''
     make_directory(file_name)
-    with open(file_name, 'w', encoding='utf-8') as json_f:
+    with open(file_name, 'w', encoding='utf8') as json_f:
         json.dump(object, json_f, indent=4, ensure_ascii=False)
         

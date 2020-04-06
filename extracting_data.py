@@ -24,6 +24,7 @@ pattern_price = (
 
 )
 
+
 def writing_data_and_price_json_csv():
     cars_data = []
     cars_price = []
@@ -34,6 +35,7 @@ def writing_data_and_price_json_csv():
             content = tools.file_content(f'captured_data/{page_saving.brands[i]}/{page_saving.brands[i]}_page_{j+1}.html')
             for match_data in re.finditer(pattern_data, content): # for loop for appending car data
                 # count += 1
+                # print(match_data.groupdict())
                 cars_data.append(match_data.groupdict())
             for match_price in re.finditer(pattern_price, content): # for loop for appending car prices
                 # count1 += 1
@@ -43,4 +45,21 @@ def writing_data_and_price_json_csv():
     tools.write_json(cars_price, 'cars_price.json')
     tools.write_json(cars_data, 'cars_data.json') 
     tools.write_csv(cars_data, ['brand', 'model', 'first_registration', 'kilometers', 'engine', 'transmission'], 'cars_data.csv')
+    
+# To je trba še popravit
+def fix_data(filename):
+    # "C:/Users/User/Documents/GitHub/Projektna-naloga-prog.1/cars_data.csv"
+    content = tools.file_content(filename)
+    cars_data = content.replace('è','č')
+    with open('cars_data.csv', 'w') as cfl:
+        cfl.truncate()
+        cfl.write(cars_data)
 
+
+def fix_price(filename):
+    # "C:/Users/User/Documents/GitHub/Projektna-naloga-prog.1/cars_price.csv"
+    content = tools.file_content(filename)
+    cars_price = content.replace('.','')
+    with open('cars_price.csv', 'w') as fl:
+        fl.truncate()
+        fl.write(cars_price)
