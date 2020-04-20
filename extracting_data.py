@@ -5,6 +5,7 @@ import tools
 import page_saving
 
 pattern_data = (
+    
     r'<!--------------------- DESCRIPTION  ------------------->'
     r'\s+<a class=".*" href=".*">\s+'
     r'<span>(?P<brand>.*?)\s(?P<model>.*)\.*</span>' #exctrating car brand and model
