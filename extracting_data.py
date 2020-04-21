@@ -47,16 +47,6 @@ def writing_data_and_price_json_csv():
     tools.write_json(cars_data, 'cars_data.json') 
     tools.write_csv(cars_data, ['brand', 'model', 'first_registration', 'kilometers', 'engine', 'transmission'], 'cars_data.csv')
     
-# To je trba še popravit
-def fix_data(filename):
-    # "C:/Users/User/Documents/GitHub/Projektna-naloga-prog.1/cars_data.csv"
-    content = tools.file_content(filename)
-    cars_data = content.replace('è','č')
-    with open('cars_data.csv', 'w') as cfl:
-        cfl.truncate()
-        cfl.write(cars_data)
-
-
 def fix_price(filename):
     # "C:/Users/User/Documents/GitHub/Projektna-naloga-prog.1/cars_price.csv"
     content = tools.file_content(filename)
